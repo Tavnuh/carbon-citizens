@@ -49,7 +49,7 @@ cur = conn.cursor()
 table_name = 'trend_data'
 
 #check initial row count
-cur.execute("""SELECT COUNT(*) FROM trend_data""")
+cur.execute(f"""SELECT COUNT(*) FROM {table_name}""")
 first_row_count = cur.fetchone()[0]
 
 
