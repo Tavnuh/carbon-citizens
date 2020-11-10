@@ -49,7 +49,9 @@ cur = conn.cursor()
 table_name = 'trend_data'
 
 #check initial row count
-cur.execute(f"""SELECT COUNT(*) FROM {table_name}""")
+row_counter = f"""SELECT COUNT(*) FROM {table_name}"""
+
+cur.execute(row_counter)
 first_row_count = cur.fetchone()[0]
 
 
@@ -68,7 +70,7 @@ with open(prepared_file_path, 'r') as f:
 conn.commit()
     
 #check new row count
-cur.execute("""SELECT COUNT(*) FROM trend_data""")
+cur.execute(row_counter)
 new_row_count = cur.fetchone()[0]
 
 rows_affected = new_row_count - first_row_count
