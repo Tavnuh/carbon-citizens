@@ -48,6 +48,11 @@ cur = conn.cursor()
 # Define table name in DB
 table_name = 'trend_data'
 
+#check initial row count
+cur.execute("""SELECT COUNT(*) FROM trend_data""")
+first_row_count = cur.fetchone()[0]
+
+
 with open(prepared_file_path, 'r') as f:
     reader = csv.reader(f)
     next(reader) # Skip the header row.
@@ -58,9 +63,15 @@ with open(prepared_file_path, 'r') as f:
             DO NOTHING
             """,
         row)
-               
+  
+#commit insert
 conn.commit()
-rows_affected = cur.rowcount
+    
+#check new row count
+cur.execute("""SELECT COUNT(*) FROM trend_data""")
+new_row_count = cur.fetchone()[0]
+
+rows_affected = new_row_count - first_row_count
 
 cur.close()
 conn.close()
