@@ -1,11 +1,9 @@
 import time
-from datetime import datetime
 from dotenv import load_dotenv
 import os
 import pandas as pd
 import csv
 import psycopg2 as pg
-from io import StringIO
 
 load_dotenv()
 
@@ -17,7 +15,6 @@ file_name = origin_file_path.split('/')[-1]
 prepared_file_path = '2. Prepared Data/{}'.format(file_name)
 
 # Read CSV to DF, convert first col to 'yyyy-mm-dd' format, add empty ID col
-#my_parser = lambda x: datetime.strptime(x, "%d/%m/%Y")
 df = pd.read_csv(origin_file_path, parse_dates=[0])
 df['uid'] = df['Date'].map(str)+df['Country Code'].map(str)+df['Song ISRC'].map(str)+df['Provider'].map(str)
 
