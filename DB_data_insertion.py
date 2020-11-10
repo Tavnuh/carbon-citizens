@@ -54,7 +54,7 @@ row_counter = f"""SELECT COUNT(*) FROM {table_name}"""
 cur.execute(row_counter)
 first_row_count = cur.fetchone()[0]
 
-
+#upsert from prepared file into DB
 with open(prepared_file_path, 'r') as f:
     reader = csv.reader(f)
     next(reader) # Skip the header row.
