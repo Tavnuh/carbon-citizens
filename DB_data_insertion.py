@@ -65,7 +65,7 @@ rows_affected = cur.rowcount
 cur.close()
 conn.close()
 
-
+# print elapsed time
 print('Copied {} rows to {} in'.format(rows_affected,table_name),round((time.time() - start_time),2), 
       'seconds after checking for duplicates')
 
