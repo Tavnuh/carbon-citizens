@@ -16,7 +16,6 @@ origin_file_path = '1. Original Data/trend_data_2020-05-02_to_2020-07-31.csv'
 file_name = origin_file_path.split('/')[-1]
 prepared_file_path = '2. Prepared Data/{}'.format(file_name)
 
-
 # Read CSV to DF, convert first col to 'yyyy-mm-dd' format, add empty ID col
 #my_parser = lambda x: datetime.strptime(x, "%d/%m/%Y")
 df = pd.read_csv(origin_file_path, parse_dates=[0])
@@ -46,11 +45,8 @@ conn_string = "host={} dbname={} user={} password={} sslmode={}".format(hostname
 conn = pg.connect(conn_string)
 cur = conn.cursor()
 
-
 # Define table name in DB
 table_name = 'trend_data'
-
-
 
 with open(prepared_file_path, 'r') as f:
     reader = csv.reader(f)
@@ -63,24 +59,8 @@ with open(prepared_file_path, 'r') as f:
             """,
         row)
                
-
-
 conn.commit()
 rows_affected = cur.rowcount
-
-"""
-NEXT ITERATION: Figure out how to replace the dumb UID that is generated at the 
-DF stage.
-
-I wont be able to have the DB create the ID for me for the purpose of uniqueness, 
-because it needs to check for duplicates at the upload stage, OR it needs to 
-remove duplicates after the upload
-
-Given that every row needs to be unique, I might create a composite primary key
-of the appropriate columns in the DB, then do the ON CONFLICT check based on that
-
-"""
-
 
 cur.close()
 conn.close()
