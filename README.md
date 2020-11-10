@@ -1,6 +1,6 @@
 # Carbon Citizens 
 
-ETL / Storage / Modeling and viz pipeline for Cardbon Citizens data.
+ETL / Storage / Modeling and viz pipeline for Carbon Citizens data.
 
 Early stages yet, but eventually this will be an automated retrieval, storage, modelling and visualiation pipeline for all of the data available
 from Carbon Citizens, including Tunecore, YouTube, Spotify etc. 
