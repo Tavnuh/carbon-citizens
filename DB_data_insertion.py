@@ -43,7 +43,7 @@ conn = pg.connect(conn_string)
 cur = conn.cursor()
 
 # Define table name in DB
-table_name = 'trend_data'
+table_name = 'dev_trend_data'
 
 #check initial row count
 row_counter = f"""SELECT COUNT(*) FROM {table_name}"""
