@@ -16,7 +16,7 @@ prepared_file_path = '2. Prepared Data/{}'.format(file_name)
 
 # Read CSV to DF, convert first col to 'yyyy-mm-dd' format, add empty ID col
 df = pd.read_csv(origin_file_path, parse_dates=[0])
-df['uid'] = df['Date'].map(str)+df['Country Code'].map(str)+df['Song ISRC'].map(str)+df['Provider'].map(str)
+
 
 #Check if file already exists in Prepared data - if so, delete
 #Write altered CSV to Prepared Data folder with same file name as origin
