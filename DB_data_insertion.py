@@ -14,7 +14,7 @@ origin_file_path = '1. Original Data/trend_data_2020-07-30_to_2020-08-31.csv'
 file_name = origin_file_path.split('/')[-1]
 prepared_file_path = '2. Prepared Data/{}'.format(file_name)
 
-# Read CSV to DF, convert first col to 'yyyy-mm-dd' format, add empty ID col
+# Read CSV to DF, convert first col to 'yyyy-mm-dd' format
 df = pd.read_csv(origin_file_path, parse_dates=[0])
 
 
