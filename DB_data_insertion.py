@@ -10,7 +10,7 @@ load_dotenv()
 start_time = time.time()
 
 # Define the file path, file name and prepared file path
-origin_file_path = '1. Original Data/trend_data_2020-05-02_to_2020-07-31.csv'
+origin_file_path = '1. Original Data/trend_data_2020-07-30_to_2020-08-31.csv'
 file_name = origin_file_path.split('/')[-1]
 prepared_file_path = '2. Prepared Data/{}'.format(file_name)
 
