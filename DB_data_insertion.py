@@ -1,6 +1,7 @@
 import time
 from dotenv import load_dotenv
 import os
+import glob
 import pandas as pd
 import csv
 import psycopg2 as pg
@@ -9,9 +10,14 @@ load_dotenv()
 
 start_time = time.time()
 
-# Define the file path, file name and prepared file path
-origin_file_path = '1. Original Data/trend_data_2020-08-29_to_2020-09-30.csv'
-file_name = origin_file_path.split('/')[-1]
+
+
+
+
+# Search for the latest file, define file name and prepared file path
+list_of_files = glob.glob('1. Original Data/*.csv') 
+origin_file_path = max(list_of_files, key=os.path.getctime)
+file_name = origin_file_path.split('\\')[-1]
 prepared_file_path = '2. Prepared Data/{}'.format(file_name)
 
 # Read CSV to DF, convert first col to 'yyyy-mm-dd' format
