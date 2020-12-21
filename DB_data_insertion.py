@@ -57,8 +57,8 @@ with open(prepared_file_path, 'r') as f:
     next(reader) # Skip the header row.
     for row in reader:
         cur.execute(f""" INSERT INTO {table_name} 
-            VALUES (%s, %s, %s, %s,%s, %s, %s, %s,%s, %s, %s, %s,%s, %s, %s)
-            ON CONFLICT (uid)
+            VALUES (%s, %s, %s, %s,%s, %s, %s, %s,%s, %s, %s, %s,%s, %s)
+            ON CONFLICT
             DO NOTHING
             """,
         row)
