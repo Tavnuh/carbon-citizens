@@ -5,6 +5,7 @@ import glob
 import pandas as pd
 import csv
 import psycopg2 as pg
+import codecs
 
 load_dotenv()
 
@@ -58,7 +59,7 @@ cur.execute(row_counter)
 first_row_count = cur.fetchone()[0]
 
 #upsert from prepared file into DB
-with open(prepared_file_path, 'r') as f:
+with codecs.open(prepared_file_path, 'r', encoding='utf-8') as f:
     reader = csv.reader(f)
     next(reader) # Skip the header row.
     for row in reader:
@@ -82,6 +83,8 @@ cur.close()
 conn.close()
 
 # print elapsed time
-print('Copied {} rows to {} in'.format(rows_affected,table_name),round((time.time() - start_time),2), 
+print('Copied {} rows from {} to {} in'.format(rows_affected,
+                                               file_name,
+                                               table_name),round((time.time() - start_time),2), 
       'seconds after checking for duplicates')
 
